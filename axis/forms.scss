@@ -1,0 +1,223 @@
+// -----
+// Forms
+// -----
+
+// Function: Focus Glow
+// Makes your inputs glow when focused. Pass a color, they will glow that color.
+@mixin -focus-glow($color: $default-color) {
+  &:focus {
+    @include box-shadow(0 0 5px rgba($color, .7));
+    border: 1px solid desaturate($color, 35%);
+    outline: none;
+  }
+}
+
+// Mixin: Input
+//
+// A general purpose mixin for text inputs. Provides an nice attractive default
+// style that's easily customizable. Takes a color as the first param and an
+// optional width as the second.
+//
+// ex. @mixin input();
+// ex. @mixin input(purple);
+// ex. @mixin input(#D45D86, 400px);
+@mixin input($color: $aqua, $width: 250px) {
+  @include box-shadow(inset 0 1px 1px rgba(#000, 0.1));
+  -webkit-font-smoothing: antialiased;
+  font-size: $font-size * 1px;
+  font-family: $font-stack;
+  border: solid 1px #bbb;
+  border-radius: .2em;
+  outline: none;
+  padding: .45em;
+  background: #fff;
+  color: #555;
+  width: $width;
+  text-shadow: 0 0 1px rgba(#fff, .1);
+  @include transition();
+  @include pie();
+
+  @if $color {
+    @include -focus-glow($color)
+
+  } @else {
+    box-shadow: none;
+  }
+
+}
+
+// Mixin: Input Search
+//
+// A search style input with rounded corners and an optional search icon at the
+// end. Takes any color.
+//
+// ex. @include input-search();
+// ex. @include input-search(yellow);
+
+@mixin input-search($color: $aqua, $width: 250px) {
+  @include input($color, $width);
+  padding-left: 9px;
+  @include rounded();
+}
+
+// Mixin: Input Disabled
+//
+// Makes your input appear to be disabled. Note that you also need to add
+// 'disabled' to your html tag in order for it to actually be disabled.
+//
+// ex. @include input-disabled();
+
+@mixin input-disabled() {
+  cursor: not-allowed;
+  background: #F5F5F5;
+
+  &:hover, &:focus {
+    border-color: #bbb;
+    @include box-shadow(inset 0 1px 1px rgba(#000, 0.1));
+  }
+}
+
+// Mixin: Label
+//
+// Very basic label for your form. Pass it an optional display type to have it
+// inline or block.
+//
+// ex. @include label();
+// ex. @include label('block');
+
+@mixin label($display : 'inline-block') {
+  line-height: 1.5em;
+  display: unquote($display);
+}
+
+// Mixin: Field
+//
+// Often times it's easier to wrap your input and label in a div called "field"
+// so they can be floated, position, and manipulated without screwing up the
+// rest of the form. That's what this mixin is for - put it on a div that
+// contains a label and an input. Then feed it a direction to align (default is
+// right), and an optional width.
+//
+// ex. @include field();
+@mixin field($direction: right, $width: 370px) {
+  clear: both;
+  margin-bottom: 5px;
+  text-align: $direction;
+  width: $width;
+}
+
+// Mixin: Input Error
+//
+// When someone F'd it up, you gotta show them how it is. Put this on an input
+// to make it clear that something bad is happening. Best implemented in an
+// .error class or something similar.
+//
+// ex. @include input-error();
+// ex. @include input-error(blue);
+
+@mixin input-error($color: $red) {
+  color: $color;
+  border-color: $color;
+  @include -focus-glow($color);
+}
+
+// Mixin: Field Error
+//
+// If you are wrapping labels and inputs in a field div, this makes life even
+// easier. Makes the label text as well as the input field red.
+//
+// ex. @include field-error();
+// ex. @include field-error(blue);
+
+@mixin field-error($color: $red) {
+  color: $color;
+
+  input {
+    @include input-error($color);
+  }
+}
+
+// Mixin: Input Warning
+//
+// Ok, so maybe you didn't totally F it up, but at very least you deserve a
+// warning. Best implemented in a .warning class or something similar.
+//
+// ex. @include input-warning();
+// ex. @include input-warning(blue);
+
+@mixin input-warning($color: $yellow) {
+  color: darken($color, 15%);
+  border-color: $color;
+  @include -focus-glow($color);
+}
+
+// Mixin: Field Warning
+//
+// If you are wrapping labels and inputs in a field div, this makes life even
+// easier. Makes the label text as well as the input field yellow.
+//
+// ex. @include field-warning();
+
+@mixin field-warning($color: $yellow) {
+  color: darken($color, 15%);
+
+  input {
+    @include input-warning($color);
+  }
+}
+
+// Mixin: Input Success
+//
+// http://cl.ly/F4Em/great-success.jpeg - Best implemented in a .success class
+// or something similar.
+//
+// ex. @include input-success();
+// ex. @include input-success(red);
+
+@mixin input-success($color: $green) {
+  color: $color;
+  border-color: $color;
+  @include -focus-glow($color);
+}
+
+// Mixin: Field Success
+//
+// You're probably getting tired of this routine at this point. I'm sure you can
+// imagine what this does.
+//
+// ex. @include field-success();
+// ex. @include field-success(blue);
+
+@mixin field-success($color: $green) {
+  color: $color;
+
+  input {
+    @include input-success($color);
+  }
+}
+
+// Additive Mixin: Fields
+//
+// WARNING: Creates classes in your css and styles them - not to be used inside
+// an element.
+//
+// Add the field styles to .field as well as success, warning, and failure
+// states. Also takes direction and width. Highly recommended mixin.
+
+@mixin fields($direction: right, $width: 370px) {
+  .field {
+    @include field($direction, $width);
+
+    &.success {
+      @include field-success();
+    }
+
+    &.warning {
+      @include field-warning();
+    }
+
+    &.error {
+      @include field-error();
+    }
+  }
+}
