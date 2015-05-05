@@ -1,0 +1,24 @@
+
+// ---------
+// Utilities
+// ---------
+
+// Mixin: Pie
+// When turned on, enables css3 pie (http://css3pie.com/) for all
+// elements that can use it. Which makes IE look a lot nicer.
+
+@mixin pie() {
+  behavior: url($pie-path) if $pie-enabled;
+}
+
+// Mixin: Rounded
+//
+// Unless you are working with a ridiculously large element, this will round the
+// corners as much as css will allow. Even in IE.
+//
+// ex. rounded()
+
+@mixin rounded() {
+  border-radius: 999px;
+  @include pie();
+}
