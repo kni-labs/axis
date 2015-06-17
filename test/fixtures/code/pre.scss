@@ -1,0 +1,15 @@
+@mixin pre() {
+  display: block;
+  padding: 7px;
+  background-color: #F5F5F5;
+  border: 1px solid #E1E1E8;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: Menlo, Monaco, monospace;
+  line-height: 160%;
+}
+
+pre {
+  @include pre();
+}

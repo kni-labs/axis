@@ -1,0 +1,43 @@
+// Alias: Uppercase
+// An alias for 'text-transform: uppercase'
+// ex. @include uppercase();
+
+@mixin uppercase() {
+  text-transform: uppercase;
+}
+
+
+// Alias: Upcase
+@mixin upcase() {
+  @include uppercase();
+}
+
+// Alias: Lowercase
+// An alias for 'text-transform: lowercase'
+// ex. @include lowercase();
+@mixin lowercase() {
+  text-transform: lowercase;
+}
+
+// Alias: Downcase
+@mixin downcase {
+  @include lowercase();
+}
+
+// Alias: Reset Case
+// Gets rid of an text transform
+// ex. @include reset-case();
+@mixin reset-case() {
+  text-transform: none;
+}
+
+// Mixin: Small
+//
+// Makes your text smaller and a little lighter. Great on <small /> tags.
+//
+// ex. @include small();
+@mixin small() {
+  font-size: 55%;
+  opacity: .6;
+  font-weight: normal;
+}
