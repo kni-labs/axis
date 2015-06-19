@@ -68,11 +68,12 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border: none;
+  border: 0;
 
   &:hover, &:focus {
     background-color: darken($color, 5%);
     color: darken($textColor, 3%);
+    border: 0;
   }
 
   &:active {
