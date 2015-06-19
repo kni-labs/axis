@@ -38,13 +38,3 @@ describe 'api', ->
     axis.version.should.eql(@pkg.version)
   it 'exposes the library name', ->
     axis.libname.should.eql(@pkg.name)
-
-describe 'code', ->
-
-  before -> @path = path.join(test_path, 'code')
-
-  it 'code', (done) ->
-    compile_and_match(path.join(@path, 'code.scss'), done)
-
-  it 'pre', (done) ->
-    compile_and_match(path.join(@path, 'pre.scss'), done)
