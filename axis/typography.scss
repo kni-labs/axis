@@ -31,6 +31,31 @@
   text-transform: none;
 }
 
+// Alias: Bold
+// It's just faster to type bold() than font-weight: bold
+
+@mixin bold() {
+  font-weight: bold;
+}
+
+
+// Alias: Italic
+// It's just faster to type italic() than font-style: italic
+
+@mixin italic() {
+  font-style: italic;
+}
+
+
+// Alias: Normal
+// Put the font-weight and style back to normal
+
+@mixin normal() {
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 // Mixin: Small
 //
 // Makes your text smaller and a little lighter. Great on <small /> tags.
@@ -40,4 +65,34 @@
   font-size: 55%;
   opacity: .6;
   font-weight: normal;
+}
+
+// Mixin: Raquo
+//
+// Because technically raquo is not semantic, it's better to add it like this.
+//
+// ex. raquo()
+
+@mixin raquo() {
+  &:after {
+    content: " \00BB";
+  }
+}
+
+// Mixin: Font Face
+//
+// Super simple font-face declaration. Just give the name and the folder it
+// lives in. Make sure the font name matches the name of the files. Uses the
+// fontspring syntax:
+// http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax
+//
+// ex. font-face(proxima-nova, '/fonts')
+
+@mixin font-face($name, $folder, $weight:'normal', $style:'normal') {
+  @font-face {
+    font-family: $name;
+    src: url($folder unquote('/') $name unquote('.eot') '?#iefix') format('embedded-opentype'), url($folder unquote('/') $name unquote('.woff')) format('woff'), url($folder unquote('/') $name unquote('.ttf')) format('truetype'), url($folder unquote('/') $name unquote('.eot') unquote('#') $name) format('svg');
+    font-weight: unquote($weight);
+    font-style: unquote($style);
+  }
 }

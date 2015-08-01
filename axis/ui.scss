@@ -1,0 +1,103 @@
+// --
+// UI
+// --
+
+// Mixin: Area
+//
+// Just a nice little area for you to put content in. Rounded corners, box with
+// light grey background by default. You can pass it a different color if you'd
+// like.
+//
+// ex. area()
+// ex. area: red // <-- not recommended
+
+@mixin area($color: #F5F5F5) {
+  @include box-shadow(inset 0 0 6px rgba(#000,.05));
+  background-color: color;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px 0;
+  @include pie()
+}
+
+// Mixin: Notice
+//
+// A notice for you. Best used for flash alerts, this was originally an internal
+// mixin, but you can use it if you'd like. Give it a color and a width and it
+// will output a nice lightly gradiented box for your notice to reside in.
+//
+// ex. notice()
+// ex. notice: 500px blue
+
+@mixin notice($width: false, $color: #EEEEEE, $padding: 10px) {
+  @include group();
+  @include gradient($color, 3%);
+  border-radius: 5px;
+  padding: $padding;
+  border: 1px solid darken($color, 10%);
+  box-shadow: 1px 1px 3px rgba(#000,.05);
+  position: relative;
+  width: $width if $width;
+}
+
+// Mixin: Flash
+//
+// This is really great for rails flash messages, or really any little
+// notifications like 'logged in!', 'logged out!', or 'errarrrr!'. Takes one of
+// four types and colors them nicely for you - notice, success, warning, or
+// error. Defaults to notice.
+//
+// ex. flash()
+// ex. flash: 'error'
+
+@mixin flash($type: 'notice') {
+  @if $type == 'notice' {
+    @include notice(color: #6CC5FA);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(#000,.2);
+  }
+  @if $type == 'success' {
+    @include notice(color: #7BDEA3);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(#000,.2);
+  }
+  @if $type == 'warning' {
+    @include notice(color: #FAE677);
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(#fff,.2);
+  }
+  @if $type == 'error' {
+    @include notice(color: #E77C70);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(#000,.2);
+  }
+}
+
+// Mixin: Breadcrumb
+//
+// Lay this one down on a list and it will turn the list into a breadcrumb-y
+// thing. By default separates with a slash, but you can feed it any character.
+// Second param is spacing between the list items, and the third is the color of
+// the divider. All are optional.
+//
+// ex. breadcrumb()
+// ex. breadcrumb: '>'
+// ex. breadcrumb: "-" 25px red
+// ex. breadcrumb "~" 40px
+
+@mixin breadcrumb($character: "/", $spacing:10px, $dividerColor: #CDCDCD) {
+  @include inline-list: $spacing;
+
+  li:after {
+    content: $character;
+    margin-left: $spacing;
+    color: $dividerColor;
+  }
+
+  li:last-child:after {
+    content: "";
+  }
+}

@@ -11,7 +11,7 @@ cssparse = require 'css-parse'
 test_path = path.join(__dirname, 'fixtures')
 
 compile = (p) ->
-  accord.load('scss').renderFile(p, { use: axis() })
+  accord.load('scss').renderFile(p)
 
 match_expected = (out, p, done) ->
   try
