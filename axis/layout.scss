@@ -27,6 +27,25 @@
   column-break-inside: avoid;
 }
 
+// Mixin: Clearfix
+//
+//ex. @include clearfix()
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Alias: cf
+// Clearfix but shorter.
+
+@mixin cf() {
+  @include clearfix();
+}
+
 // Alias: group
 // Clearfix with a better name. Excellent for wrangling floats.
 
