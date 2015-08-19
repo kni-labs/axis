@@ -210,3 +210,23 @@
     }
   }
 }
+
+// Mixin: Table Layout
+//
+// Sometimes you just need a good old-fashioned table layout.
+// Read more: http://colintoh.com/blog/display-table-anti-hero
+//
+// ex: @include tl()
+// ex: @include tl(auto)
+
+@mixin tl($layout-type: fixed) {
+  display: table;
+  table-layout: $layout-type;  //fixed or auto
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  > * {
+    display: table-cell;
+  }
+}
