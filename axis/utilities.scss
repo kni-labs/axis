@@ -36,7 +36,7 @@
 // Border, but quicker and with an intelligent default.
 
 @mixin b() {
-  $arguments = unquote('1px solid') unless $arguments;
+  $arguments: unquote('1px solid') unless $arguments;
   border: $arguments
 }
 
@@ -190,11 +190,10 @@ $ease-in-out-swift: cubic-bezier(0.900,  0.000, 0.100, 1.000);
 
 // Function for converting a px based font-size to rem.
 @function rem($size) {
-  $base-font-size: 16px !default ;
   $remSize: $size / $base-font-size;
-  //Default font size on html element is 100%, equivalent to 16px;
   @return #{$remSize}rem;
 }
+
 
 // Block Mixin: Quantity Queries
 //
