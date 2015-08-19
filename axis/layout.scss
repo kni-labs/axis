@@ -117,19 +117,14 @@
 // direct children. The first one will float to the left, the second one will be
 // to the right of the first, and third will go farthest right.
 //
-// ex. media()
-// ex. media: 15px
-// ex. media: 15px 10px
+// ex. @include media()
+// ex. @include media(15px)
+// ex. @include media(15px, 10px)
 
-@mixin media($margin: 10px) {
+@mixin media($margin-left: 10px, $margin-right: $margin-left) {
 
-  $left-margin: $margin;
-  $right-margin: $margin;
-
-  @if length($arguments) > 1 {
-    $left-margin: $arguments[0];
-    $right-margin: $arguments[1];
-  }
+  $margin-left: $margin-left;
+  $margin-right: $margin-right;
 
   overflow: hidden;
   zoom: 1;
@@ -141,12 +136,12 @@
 
   & > *:first-child {
     float: left;
-    margin-right: $right-margin;
+    margin-right: $margin-right;
   }
 
   & > *:nth-child(3) {
     float: right;
-    margin-left: $left-margin;
+    margin-left: $margin-left;
   }
 }
 
