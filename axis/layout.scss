@@ -131,6 +131,17 @@
   }
 }
 
+//remove-unit function is called in ratio-box
+@function remove-unit($n) {
+  @if typeof($n) is "unit" {
+    @return $n / ($n * 0 + 1);
+  }
+
+  @else {
+    @return $n;
+  }
+}
+
 // Mixin: Ratio Box
 // Set a specific width/height ratio. Useful on background images and iframes.
 
@@ -179,4 +190,4 @@
       margin-right: 0 !important;
     }
   }
-} 
+}
