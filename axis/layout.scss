@@ -123,9 +123,6 @@
 
 @mixin media($margin-left: 10px, $margin-right: $margin-left) {
 
-  $margin-left: $margin-left;
-  $margin-right: $margin-right;
-
   overflow: hidden;
   zoom: 1;
 
