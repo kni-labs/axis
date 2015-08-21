@@ -96,3 +96,28 @@
     font-style: unquote($style);
   }
 }
+
+
+// Mixin: Reset Link
+//
+// Sometimes my link mixin of the browser defaults will give you questionable
+// link defaults that you don't want on certain elements. This guy gets rid of
+// that.
+
+// ex. @include reset-link()
+
+@mixin reset-link() {
+  border: none;
+  text-decoration: none;
+  color: initial;
+
+  &:hover {
+    border: none;
+    text-decoration: none;
+    color: initial;
+  }
+
+  &:visited {
+    opacity: 1;
+  }
+}
