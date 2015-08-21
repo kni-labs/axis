@@ -162,3 +162,46 @@
     padding: 0.125rem;
   }
 }
+
+// Mixin: Inline List
+//
+// For when you need your list to be horizontal. Pass it the spacing you want
+// between list elements, whatever units you'd like. Defaults to 20px.
+//
+// ex. @include inline-list()
+
+@mixin inline-list($spacing: 20px) {
+  @include group();
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: left;
+    margin-right: $spacing;
+    list-style-type: none;
+  }
+
+  li:last-child {
+    margin-right: 0;
+  }
+}
+
+// Mixin: Reset List
+//
+// If you're tired of all the list shenanigans and want to get rid of them for
+// this special list you're working on, this is your guy. Resets the margins,
+// padding, and style.
+//
+// ex. @include reset-list()
+
+@mixin reset-list() {
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+}
