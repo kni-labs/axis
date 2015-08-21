@@ -205,3 +205,21 @@
     margin: 0;
   }
 }
+
+// Additive Mixin: Lists
+//
+// WARNING: Creates classes in your css and styles them - not to be used inside
+// an element.
+//
+// Adds roots' styles to ul and ols.
+//
+// ex. lists()
+
+@include lists() {
+  ul {
+    @include ul();
+  }
+  ol {
+    @include ol();
+  }
+}
