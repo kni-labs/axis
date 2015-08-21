@@ -71,7 +71,7 @@
 //
 // Because technically raquo is not semantic, it's better to add it like this.
 //
-// ex. raquo()
+// ex. @include raquo()
 
 @mixin raquo() {
   &:after {
@@ -119,5 +119,46 @@
 
   &:visited {
     opacity: 1;
+  }
+}
+
+
+// Mixin: Ul
+//
+// A nice default for list styles. More or less the same as browser defaults,
+// scales nicely. You can pass it any style that list-style-type would normally
+// take. Defaults to disc. Use this on a ul element por favor.
+//
+// ex. @include ul()
+
+@mixin ul($style: 'disc') {
+  margin: 5px 15px;
+  margin: 0.32rem 0.94rem;
+  padding-left: 1rem;
+
+  li {
+    list-style-type: unquote($style);
+    padding: 2px 0;
+    padding: 0.125rem;
+  }
+}
+
+// Mixin: Ol
+//
+// A nice default for list styles. More or less the same as browser defaults,
+// scales nicely. You can pass it any style that list-style-type would normally
+// take. Defaults to decimal. Use this on a ol element por favor.
+//
+// ex. @include ol()
+
+@mixin ol($style: 'decimal') {
+  margin: 5px 18px;
+  margin: 0.32rem 1.125rem;
+  padding-left: 1rem;
+
+  li {
+    list-style-type: unquote($style);
+    padding: 2px 0;
+    padding: 0.125rem;
   }
 }
