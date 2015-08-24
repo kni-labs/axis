@@ -206,6 +206,33 @@
   }
 }
 
+// Additive Mixin: Base
+//
+// WARNING: Creates classes in your css and styles them - not to be used inside
+// an element.
+//
+// This is an essential mixin. You want this on your page. Sets your font stack,
+// size, and colors based on the settings file and makes sure that your text is
+// a great looking as possible. You can override any of the params, but there is
+// really no reason to.
+//
+// ex. @include base()
+@mixin base($fonts: $font-stack, $size: $font-size, $color: $font-color) {
+  html {
+    font-size: $size * 1px;
+    font-size: ($size / 16) * 100 * 1%;
+  }
+
+  body {
+    font-family: $fonts;
+    color: $color;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-size-adjust: auto;
+  }
+}
+
 // Additive Mixin: Lists
 //
 // WARNING: Creates classes in your css and styles them - not to be used inside
